@@ -7,7 +7,6 @@ on:
       - '**'
 
 jobs:
-
   build:
     name: Build Application
     runs-on: ubuntu-latest
@@ -16,7 +15,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Build
+      - name: Build Application
         run: echo "Building Application..."
 
   test:
@@ -26,7 +25,7 @@ jobs:
     needs: build
 
     steps:
-      - name: Test
+      - name: Test Application
         run: echo "Testing Application..."
 
   deploy:
@@ -38,6 +37,6 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
-      - name: Deploy
+      - name: Deploy Application
         run: echo "Deploying Application..."
 ```
