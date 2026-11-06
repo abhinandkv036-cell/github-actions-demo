@@ -1,0 +1,40 @@
+name: Self Hosted Runner Demo
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test on EC2 Self-Hosted Runner
+
+    runs-on: [self-hosted, Linux, X64]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Display Runner Information
+        run: |
+          echo "Running on EC2 Self-Hosted Runner"
+          echo "Hostname:"
+          hostname
+          echo "Current User:"
+          whoami
+          echo "System Information:"
+          uname -a
+
+      - name: Verify Ubuntu
+        run: cat /etc/os-release
+
+      - name: Check Java Version
+        run: java -version
+
+      - name: Check Maven Version
+        run: mvn -version
+
+      - name: Test Workflow
+        run: echo "Workflow executed successfully on EC2!"
